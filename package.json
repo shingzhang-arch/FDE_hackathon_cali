@@ -6,11 +6,13 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "start": "node server.js",
     "lint": "eslint .",
     "preview": "vite preview"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.18",
+    "express": "^4.22.1",
     "framer-motion": "^12.30.0",
     "lucide-react": "^0.563.0",
     "react": "^19.2.0",
@@ -30,5 +32,8 @@
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.46.4",
     "vite": "^7.2.4"
+  },
+  "engines": {
+    "node": "20.x"
   }
 }
