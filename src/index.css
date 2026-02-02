@@ -1,0 +1,57 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  
+  /* Salesforce-inspired colors */
+  --color-salesforce-blue: #0176D3;
+  --color-salesforce-dark: #032D60;
+  --color-salesforce-light: #1B96FF;
+  --color-accent-purple: #9050E9;
+  --color-accent-teal: #04A5A5;
+  --color-success: #2E844A;
+  --color-warning: #FE9339;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom gradient backgrounds */
+.gradient-hero {
+  background: linear-gradient(135deg, #032D60 0%, #0176D3 50%, #1B96FF 100%);
+}
+
+.gradient-section {
+  background: linear-gradient(180deg, #f8fafc 0%, #e2e8f0 100%);
+}
+
+.gradient-card {
+  background: linear-gradient(145deg, #ffffff 0%, #f1f5f9 100%);
+}
+
+/* Animated gradient for special elements */
+.animated-gradient {
+  background: linear-gradient(270deg, #0176D3, #9050E9, #04A5A5, #0176D3);
+  background-size: 300% 300%;
+  animation: gradient-shift 8s ease infinite;
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Glass effect */
+.glass {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}

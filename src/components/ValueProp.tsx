@@ -1,0 +1,158 @@
+import { motion } from 'framer-motion';
+import { 
+  Gauge, 
+  Rocket, 
+  Eye,
+  CheckCircle2,
+  Target
+} from 'lucide-react';
+
+const valueProps = [
+  {
+    icon: Gauge,
+    title: 'Operational Efficiency',
+    tagline: 'Do more with less friction',
+    benefits: [
+      'Eliminates manual status reporting',
+      'Auto-aggregates insights across teams',
+      'Reduces meeting overhead',
+      'Streamlines graduation documentation',
+    ],
+    color: 'blue',
+    gradient: 'from-blue-500 to-blue-600',
+    lightBg: 'bg-blue-50',
+  },
+  {
+    icon: Rocket,
+    title: 'Accelerating Engagements',
+    tagline: 'Learn from every team, instantly',
+    benefits: [
+      'Teams discover existing solutions faster',
+      'Blockers get resolved with proven approaches',
+      'New teams ramp up with historical context',
+      'Knowledge compounds over time',
+    ],
+    color: 'purple',
+    gradient: 'from-purple-500 to-purple-600',
+    lightBg: 'bg-purple-50',
+  },
+  {
+    icon: Eye,
+    title: 'Leadership Insights',
+    tagline: 'See the patterns, not just the noise',
+    benefits: [
+      'Real-time visibility into team progress',
+      'Common blockers surfaced automatically',
+      'Data-driven resource allocation',
+      'Proactive intervention on risks',
+    ],
+    color: 'teal',
+    gradient: 'from-teal-500 to-teal-600',
+    lightBg: 'bg-teal-50',
+  },
+];
+
+export default function ValueProp() {
+  return (
+    <section id="value" className="py-24 bg-slate-50">
+      <div className="max-w-6xl mx-auto px-6">
+        {/* Section header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
+        >
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-100 text-green-600 text-sm font-medium mb-4">
+            <Target className="w-4 h-4" />
+            Hackathon Criteria
+          </div>
+          <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
+            Addressing the{' '}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-teal-600">
+              Core Challenges
+            </span>
+          </h2>
+          <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+            FDE Pulse directly addresses all three hackathon priorities 
+            with measurable impact.
+          </p>
+        </motion.div>
+
+        {/* Value propositions */}
+        <div className="grid lg:grid-cols-3 gap-8">
+          {valueProps.map((prop, index) => (
+            <motion.div
+              key={prop.title}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.15 }}
+              className="relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
+            >
+              {/* Header */}
+              <div className={`p-6 bg-gradient-to-r ${prop.gradient} text-white`}>
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="w-12 h-12 rounded-xl bg-white/20 flex items-center justify-center">
+                    <prop.icon className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold">{prop.title}</h3>
+                    <p className="text-white/80 text-sm">{prop.tagline}</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Benefits list */}
+              <div className="p-6">
+                <ul className="space-y-4">
+                  {prop.benefits.map((benefit, benefitIndex) => (
+                    <motion.li
+                      key={benefitIndex}
+                      initial={{ opacity: 0, x: -10 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: index * 0.15 + benefitIndex * 0.05 }}
+                      className="flex items-start gap-3"
+                    >
+                      <CheckCircle2 className={`w-5 h-5 flex-shrink-0 mt-0.5 ${
+                        prop.color === 'blue' ? 'text-blue-500' :
+                        prop.color === 'purple' ? 'text-purple-500' :
+                        'text-teal-500'
+                      }`} />
+                      <span className="text-slate-700">{benefit}</span>
+                    </motion.li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Decorative corner */}
+              <div className={`absolute bottom-0 right-0 w-24 h-24 ${prop.lightBg} rounded-tl-[100px] opacity-50`} />
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Bottom CTA banner */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="mt-16 relative overflow-hidden rounded-2xl"
+        >
+          <div className="absolute inset-0 animated-gradient opacity-90" />
+          <div className="relative p-8 md:p-12 text-center text-white">
+            <h3 className="text-2xl md:text-3xl font-bold mb-4">
+              One Solution. Three Priorities. Exponential Impact.
+            </h3>
+            <p className="text-white/80 text-lg max-w-2xl mx-auto">
+              FDE Pulse isn't just a tool — it's a force multiplier for how FDE teams 
+              collaborate, learn, and deliver value.
+            </p>
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
