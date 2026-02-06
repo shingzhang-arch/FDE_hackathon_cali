@@ -74,8 +74,8 @@ export default function Problem() {
             </span>
           </h2>
           <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-            Valuable insights are trapped in isolated conversations. Teams reinvent the wheel 
-            while leadership lacks visibility into common challenges.
+            Deployment Strategists spend hours writing weekly updates that disappear into a black hole. 
+            Teams reinvent solutions that already exist. Knowledge is scattered and hard to find when you need it most.
           </p>
         </motion.div>
 
@@ -119,10 +119,13 @@ export default function Problem() {
           className="mt-16 p-8 rounded-2xl bg-gradient-to-r from-slate-900 to-slate-800 text-center"
         >
           <p className="text-2xl md:text-3xl font-semibold text-white">
-            "Where can I find what other teams have tried?"
+            "Who's done this before? What should I do?"
           </p>
           <p className="text-slate-400 mt-3 text-lg">
-            — Every new FDE team, every time
+            "I'm having this issue—did someone already solve this?"
+          </p>
+          <p className="text-slate-500 mt-2 text-sm">
+            — Every Deployment Strategist, every week
           </p>
         </motion.div>
       </div>

@@ -55,11 +55,11 @@ const journeySteps = [
 
 export default function UserJourney() {
   return (
-    <section id="journey" className="py-24 bg-slate-900 relative overflow-hidden">
+    <section id="journey" className="mb-24 scroll-mt-20 py-24 bg-slate-50 relative overflow-hidden">
       {/* Background grid */}
-      <div className="absolute inset-0 opacity-20">
+      <div className="absolute inset-0 opacity-10">
         <div className="absolute inset-0" style={{
-          backgroundImage: `radial-gradient(circle at 1px 1px, rgba(255,255,255,0.15) 1px, transparent 0)`,
+          backgroundImage: `radial-gradient(circle at 1px 1px, rgba(0,0,0,0.1) 1px, transparent 0)`,
           backgroundSize: '40px 40px',
         }} />
       </div>
@@ -73,17 +73,17 @@ export default function UserJourney() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 text-white/90 text-sm font-medium mb-4">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-100 text-blue-700 text-sm font-medium mb-4">
             <ArrowRight className="w-4 h-4" />
             User Journey
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
             From Check-in to{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
               Collective Knowledge
             </span>
           </h2>
-          <p className="text-xl text-slate-400 max-w-3xl mx-auto">
+          <p className="text-xl text-slate-600 max-w-3xl mx-auto">
             Every weekly interaction feeds into a growing ecosystem of insights, 
             solutions, and organizational memory.
           </p>
@@ -109,7 +109,7 @@ export default function UserJourney() {
                 )}
 
                 {/* Step card */}
-                <div className="bg-slate-800/50 rounded-2xl p-6 border border-slate-700 hover:border-slate-600 transition-colors">
+                <div className="bg-white rounded-2xl p-6 border-2 border-slate-200 hover:border-slate-300 hover:shadow-lg transition-all">
                   {/* Step header */}
                   <div className={`inline-block px-4 py-2 rounded-lg bg-gradient-to-r ${step.color} text-white text-sm font-semibold mb-6`}>
                     {step.title}
@@ -126,12 +126,12 @@ export default function UserJourney() {
                         transition={{ delay: stepIndex * 0.15 + itemIndex * 0.1 }}
                         className="flex items-start gap-3"
                       >
-                        <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-slate-700/50 flex items-center justify-center">
-                          <item.icon className="w-5 h-5 text-slate-300" />
+                        <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center">
+                          <item.icon className="w-5 h-5 text-slate-600" />
                         </div>
                         <div>
-                          <p className="text-white font-medium text-sm">{item.label}</p>
-                          <p className="text-slate-400 text-xs">{item.description}</p>
+                          <p className="text-slate-900 font-medium text-sm">{item.label}</p>
+                          <p className="text-slate-600 text-xs">{item.description}</p>
                         </div>
                       </motion.div>
                     ))}
@@ -160,7 +160,7 @@ export default function UserJourney() {
                 </div>
               )}
 
-              <div className="bg-slate-800/50 rounded-2xl p-6 border border-slate-700">
+              <div className="bg-white rounded-2xl p-6 border-2 border-slate-200">
                 <div className={`inline-block px-4 py-2 rounded-lg bg-gradient-to-r ${step.color} text-white text-sm font-semibold mb-4`}>
                   {step.title}
                 </div>
@@ -168,8 +168,8 @@ export default function UserJourney() {
                 <div className="grid grid-cols-2 gap-3">
                   {step.items.map((item) => (
                     <div key={item.label} className="flex items-center gap-2">
-                      <item.icon className="w-4 h-4 text-slate-400 flex-shrink-0" />
-                      <span className="text-white text-sm">{item.label}</span>
+                      <item.icon className="w-4 h-4 text-slate-600 flex-shrink-0" />
+                      <span className="text-slate-900 text-sm">{item.label}</span>
                     </div>
                   ))}
                 </div>
@@ -184,14 +184,14 @@ export default function UserJourney() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="mt-16 p-8 rounded-2xl bg-gradient-to-r from-blue-600/20 to-purple-600/20 border border-slate-700"
+          className="mt-16 p-8 rounded-2xl bg-gradient-to-r from-blue-50 to-purple-50 border-2 border-blue-200"
         >
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="text-center md:text-left">
-              <h3 className="text-2xl font-bold text-white mb-2">
+              <h3 className="text-2xl font-bold text-slate-900 mb-2">
                 The Flywheel Effect
               </h3>
-              <p className="text-slate-400 max-w-xl">
+              <p className="text-slate-700 max-w-xl">
                 Each team's check-in makes the system smarter. Blockers get resolved faster. 
                 New teams ramp up quicker. Leadership gets clearer visibility.
               </p>

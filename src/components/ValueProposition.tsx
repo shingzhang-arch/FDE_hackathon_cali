@@ -52,9 +52,9 @@ const valueProps = [
   },
 ];
 
-export default function ValueProp() {
+export default function ValueProposition() {
   return (
-    <section id="value" className="py-24 bg-slate-50">
+    <section id="value-proposition" className="mb-24 scroll-mt-20">
       <div className="max-w-6xl mx-auto px-6">
         {/* Section header */}
         <motion.div

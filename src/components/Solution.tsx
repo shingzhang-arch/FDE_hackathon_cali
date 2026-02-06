@@ -4,24 +4,24 @@ import { Bot, MessageSquare, FileText, Lightbulb, CheckCircle2 } from 'lucide-re
 const solutionSteps = [
   {
     icon: MessageSquare,
-    title: 'Conversational Check-ins',
-    description: 'AI agent reaches out weekly with natural, contextual questions about your project progress.',
+    title: 'Helps Write Weekly Updates',
+    description: 'AI agent assists Deployment Strategists in writing weekly updates, turning a chore into something valuable.',
   },
   {
     icon: Bot,
-    title: 'Adaptive Questioning',
-    description: 'Questions adapt based on your answers. Blockers trigger follow-ups, wins get celebrated.',
+    title: 'Surfaces Similar Projects',
+    description: 'Automatically finds and ranks similar projects (both in-flight and delivered) by similarity and ROI. No searching required.',
   },
   {
     icon: FileText,
-    title: 'Automatic Summaries',
-    description: 'Each check-in generates a Slack Canvas summary — searchable, shareable, permanent.',
+    title: 'Generates Real-Time Insights',
+    description: 'Creates real-time customer stories and consolidates knowledge from Slack channels, meeting transcripts, docs, and Canvas.',
   },
 ];
 
 export default function Solution() {
   return (
-    <section id="solution" className="py-24 bg-white relative overflow-hidden">
+    <section id="solution" className="mb-24 scroll-mt-20 py-24 bg-white relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-blue-50 to-transparent" />
       
@@ -39,14 +39,20 @@ export default function Solution() {
               The Solution
             </div>
             <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
-              Introducing{' '}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
                 FDE Pulse
               </span>
+              <br />
+              <span className="text-2xl md:text-3xl font-semibold text-slate-700 mt-2 block">
+                The AI-Upgraded{' '}
+                <span className="text-slate-900">FDE Weekly Customer Update</span>
+              </span>
             </h2>
             <p className="text-xl text-slate-600 mb-8 leading-relaxed">
-              An AI agent that proactively checks in with your project, understands context 
-              through conversation, and turns every interaction into actionable insights.
+              An AI-powered evolution of the FDE Weekly Customer Update process. 
+              FDE Pulse transforms routine documentation into valuable insights by helping Deployment Strategists 
+              write updates, automatically surfacing similar projects, and building a knowledge base 
+              that gives back to the entire FDE team.
             </p>
 
             {/* Solution steps */}
@@ -92,7 +98,7 @@ export default function Solution() {
                 </div>
                 <div>
                   <p className="text-white font-semibold">FDE Pulse</p>
-                  <p className="text-slate-400 text-sm">Weekly Check-in</p>
+                  <p className="text-slate-400 text-sm">AI Weekly Customer Update</p>
                 </div>
                 <div className="ml-auto flex items-center gap-1">
                   <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
@@ -114,7 +120,7 @@ export default function Solution() {
                   </div>
                   <div className="bg-slate-800 rounded-2xl rounded-tl-md px-4 py-3 max-w-sm">
                     <p className="text-white text-sm">
-                      Hey team! How's the Agentforce integration coming along? Any blockers this week?
+                      Hi! I can help you write your weekly update. What progress did you make this week?
                     </p>
                   </div>
                 </motion.div>
@@ -128,7 +134,7 @@ export default function Solution() {
                 >
                   <div className="bg-blue-600 rounded-2xl rounded-tr-md px-4 py-3 max-w-sm">
                     <p className="text-white text-sm">
-                      We hit an issue with the data sync. Can't figure out the API rate limiting.
+                      We're building a voice agent for customer service. Having trouble with API rate limiting on the data sync.
                     </p>
                   </div>
                 </motion.div>
@@ -145,7 +151,7 @@ export default function Solution() {
                   </div>
                   <div className="bg-slate-800 rounded-2xl rounded-tl-md px-4 py-3 max-w-sm">
                     <p className="text-white text-sm">
-                      Noted! Team Alpha solved this last month. I'll share their approach and connect you. Want me to flag this for leadership visibility?
+                      I found 3 similar voice agent projects! Team Alpha solved the rate limiting issue last month. Here's their solution summary, and I've connected you with their channel. Also flagging this pattern for leadership.
                     </p>
                   </div>
                 </motion.div>

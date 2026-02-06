@@ -23,6 +23,16 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Presentation layout */
+.scroll-mt-20 {
+  scroll-margin-top: 5rem;
+}
+
+/* Smooth scroll offset */
+section[id] {
+  scroll-margin-top: 5rem;
+}
+
 /* Custom gradient backgrounds */
 .gradient-hero {
   background: linear-gradient(135deg, #032D60 0%, #0176D3 50%, #1B96FF 100%);

@@ -57,8 +57,12 @@ export default function Hero() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="text-xl md:text-2xl text-white/80 text-center max-w-3xl mb-12"
         >
-          An AI agent that conducts conversational check-ins with your projects, 
-          aggregates blockers for leadership, and builds a knowledge base for future teams.
+          Weekly update: I'm giving you info, can you give me info in return?
+          <br />
+          <span className="text-lg md:text-xl text-white/70 mt-2 block">
+            An AI agent that turns your weekly updates into valuable insights, 
+            connects you with similar projects, and surfaces solutions automatically.
+          </span>
         </motion.p>
 
         {/* Three pillars */}

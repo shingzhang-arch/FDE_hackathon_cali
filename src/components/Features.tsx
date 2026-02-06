@@ -11,36 +11,36 @@ import {
 const features = [
   {
     icon: MessageSquareMore,
-    title: 'Smart Weekly Check-ins',
-    description: 'Conditional questions that adapt to your team\'s current status. Blockers get deeper investigation, wins get celebrated.',
+    title: 'Helps Write Weekly Updates',
+    description: 'Turns the chore of writing weekly updates into something valuable. Encourages Deployment Strategists to document more diligently.',
     gradient: 'from-blue-500 to-cyan-500',
     delay: 0,
   },
   {
     icon: Layers,
-    title: 'Blocker Aggregation',
-    description: 'Common issues across teams are automatically surfaced for leadership. No more discovering patterns too late.',
+    title: 'Surfaces Info Automatically',
+    description: 'You don\'t have to search or ask—the agent surfaces similar projects, solutions, and connections automatically. Real-time, ranked by recency.',
     gradient: 'from-purple-500 to-pink-500',
     delay: 0.1,
   },
   {
     icon: Megaphone,
-    title: 'Solution Broadcasting',
-    description: 'When one team solves a problem, others facing the same blocker are instantly notified with the solution.',
+    title: 'Finds Who Solved Similar Use Cases',
+    description: 'Knows who is solving or has solved similar use cases. Connects you with the right projects and people. Acts like a "dating site" for matching teams with relevant work.',
     gradient: 'from-amber-500 to-orange-500',
     delay: 0.2,
   },
   {
     icon: FileCheck,
-    title: 'Auto Graduation Readouts',
-    description: 'Weekly summaries compile into a comprehensive graduation report. Hours of work reduced to one click.',
+    title: 'Helps Write Graduation Requests',
+    description: 'Later: Helps write graduation requests. Even later: Recommends graduation based on weekly updates. Turns today\'s "black hole" into something that gives back.',
     gradient: 'from-green-500 to-emerald-500',
     delay: 0.3,
   },
   {
     icon: BookOpen,
-    title: 'Knowledge Archive',
-    description: 'New teams can search all historical learnings. See how past teams tackled similar challenges.',
+    title: 'Most Up-to-Date Knowledge',
+    description: 'Access the most current knowledge on what other teams have tried. Real-time updates are critical—solutions become obsolete quickly in fast-paced AI development.',
     gradient: 'from-indigo-500 to-purple-500',
     delay: 0.4,
   },
@@ -48,7 +48,7 @@ const features = [
 
 export default function Features() {
   return (
-    <section id="features" className="py-24 bg-white">
+    <section id="features" className="mb-24 scroll-mt-20 py-24 bg-white">
       <div className="max-w-6xl mx-auto px-6">
         {/* Section header */}
         <motion.div
@@ -115,7 +115,7 @@ export default function Features() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="mt-16 grid md:grid-cols-3 gap-8 p-8 rounded-2xl bg-gradient-to-r from-slate-900 to-slate-800"
+          className="mt-16 grid md:grid-cols-3 gap-8 p-8 rounded-2xl bg-gradient-to-r from-blue-50 to-purple-50 border-2 border-blue-200"
         >
           {[
             { value: '80%', label: 'Less time on status updates' },
@@ -123,10 +123,10 @@ export default function Features() {
             { value: '100%', label: 'Knowledge retention' },
           ].map((stat, index) => (
             <div key={index} className="text-center">
-              <p className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400">
+              <p className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
                 {stat.value}
               </p>
-              <p className="text-slate-400 mt-2">{stat.label}</p>
+              <p className="text-slate-700 mt-2">{stat.label}</p>
             </div>
           ))}
         </motion.div>
