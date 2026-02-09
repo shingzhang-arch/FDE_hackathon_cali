@@ -1,7 +1,6 @@
 import PresentationLayout from './components/PresentationLayout';
 import NorthStar from './components/NorthStar';
-import ValueProposition from './components/ValueProposition';
-import BusinessChallenge from './components/BusinessChallenge';
+import ValueProp from './components/ValueProp';
 import Solution from './components/Solution';
 import UserJourney from './components/UserJourney';
 import Features from './components/Features';
@@ -11,38 +10,37 @@ import BusinessValue from './components/BusinessValue';
 import Prototype from './components/Prototype';
 import SolutionDetails from './components/SolutionDetails';
 import Roadmap from './components/Roadmap';
+import Archive from './components/Archive';
 import './index.css';
 
 const sections = [
   { id: 'north-star', title: 'North Star' },
-  { id: 'value-proposition', title: 'Value Proposition' },
-  { id: 'business-challenge', title: 'Business Challenge' },
+  { id: 'value-prop', title: 'Value Prop' },
   { id: 'solution', title: 'Solution' },
-  { id: 'journey', title: 'User Journey' },
-  { id: 'features', title: 'Features' },
-  { id: 'kpis', title: 'KPIs' },
+  { id: 'prototype', title: 'Prototype' },
+  { id: 'solution-specs', title: 'Solution Specs' },
   { id: 'complexity', title: 'Complexity to Implement' },
   { id: 'business-value', title: 'Business Value' },
-  { id: 'prototype', title: 'Prototype' },
-  { id: 'solution-details', title: 'Solution Details' },
   { id: 'roadmap', title: 'Roadmap' },
+  { id: 'archive', title: 'Archive' },
 ];
 
 function App() {
   return (
     <PresentationLayout sections={sections}>
       <NorthStar />
-      <ValueProposition />
-      <BusinessChallenge />
+      <ValueProp />
       <Solution />
-      <UserJourney />
-      <Features />
-      <KPIs />
-      <ComplexityToImplement />
-      <BusinessValue />
       <Prototype />
       <SolutionDetails />
+      <ComplexityToImplement />
+      <BusinessValue />
       <Roadmap />
+      <Archive>
+        <UserJourney />
+        <Features />
+        <KPIs />
+      </Archive>
       
       {/* Footer */}
       <footer className="mt-24 pt-8 border-t border-slate-200 text-center">

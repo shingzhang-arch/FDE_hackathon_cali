@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { PlayCircle, Search, AlertCircle, ExternalLink, Info } from 'lucide-react';
+import { PlayCircle, Search, AlertCircle, Info } from 'lucide-react';
+import Scenario1Prototype from './Scenario1Prototype';
+import Scenario2Prototype from './Scenario2Prototype';
 
 export default function Prototype() {
   const [activeScenario, setActiveScenario] = useState<'new-engagement' | 'blockers'>('new-engagement');
@@ -60,39 +62,18 @@ export default function Prototype() {
 
         {/* Prototype Embed Area */}
         <div className="mb-6">
-          <div className="rounded-2xl border-2 border-slate-200 overflow-hidden bg-slate-50">
-            <div className="p-4 bg-white border-b border-slate-200 flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                <div className="w-3 h-3 rounded-full bg-green-500"></div>
-                <span className="ml-4 text-sm text-slate-600">FDE Pulse Prototype</span>
-              </div>
-              <a
-                href="#"
-                className="text-sm text-blue-600 hover:text-blue-700 flex items-center gap-1"
-              >
-                Open in new tab
-                <ExternalLink className="w-4 h-4" />
-              </a>
-            </div>
-            <div className="aspect-video bg-slate-100 flex items-center justify-center p-8">
-              <div className="text-center">
-                <PlayCircle className="w-16 h-16 text-slate-400 mx-auto mb-4" />
-                <p className="text-slate-600 font-medium mb-2">
-                  {activeScenario === 'new-engagement' 
-                    ? 'New Engagement Scenario Prototype'
-                    : 'Ongoing Team with Blockers Scenario Prototype'}
-                </p>
-                <p className="text-sm text-slate-500">
-                  Interactive prototype will be embedded here
-                </p>
-                <p className="text-xs text-slate-400 mt-2">
-                  (Similar to WSI preview.html format)
-                </p>
-              </div>
-            </div>
-          </div>
+          <motion.div
+            key={activeScenario}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+          >
+            {activeScenario === 'new-engagement' ? (
+              <Scenario1Prototype />
+            ) : (
+              <Scenario2Prototype />
+            )}
+          </motion.div>
         </div>
 
         {/* Scenario Details */}
