@@ -1,11 +1,20 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { PlayCircle, Search, AlertCircle, Info } from 'lucide-react';
+import { PlayCircle, Search, AlertCircle, Info, User, TrendingUp, BarChart3 } from 'lucide-react';
 import Scenario1Prototype from './Scenario1Prototype';
 import Scenario2Prototype from './Scenario2Prototype';
+import Scenario3LeadershipInsights from './Scenario3LeadershipInsights';
+
+type ScenarioKey = 'project-startup' | 'weekly-checkin' | 'leadership';
+
+const journeySteps: { key: ScenarioKey; label: string; subtitle: string; persona: 'strategist' | 'product-council' | 'leadership'; icon: typeof User }[] = [
+  { key: 'weekly-checkin', label: 'Weekly Check-in', subtitle: "Time for your Friday update", persona: 'strategist', icon: User },
+  { key: 'project-startup', label: 'Project Startup', subtitle: "Who's done this before?", persona: 'strategist', icon: User },
+  { key: 'leadership', label: 'Leadership Insights', subtitle: 'What themes across projects?', persona: 'leadership', icon: TrendingUp },
+];
 
 export default function Prototype() {
-  const [activeScenario, setActiveScenario] = useState<'new-engagement' | 'blockers'>('new-engagement');
+  const [activeScenario, setActiveScenario] = useState<ScenarioKey>('weekly-checkin');
 
   return (
     <section id="prototype" className="mb-24 scroll-mt-20">
@@ -24,42 +33,59 @@ export default function Prototype() {
         </div>
 
         <p className="text-lg text-slate-600 mb-8 max-w-3xl">
-          Explore our interactive prototype showcasing the two core scenarios FDE Pulse addresses. 
-          Click through to see how the agent helps Deployment Strategists in real-time.
+          Explore our interactive prototype showcasing the three core scenarios FDE Pulse addresses. 
+          Click through to see how the agent helps Strategists, FDEs, and Leaders in real-time.
         </p>
 
-        {/* Scenario Tabs */}
-        <div className="flex gap-4 mb-6 border-b border-slate-200">
-          <button
-            onClick={() => setActiveScenario('new-engagement')}
-            className={`px-6 py-3 font-medium transition-colors border-b-2 ${
-              activeScenario === 'new-engagement'
-                ? 'border-blue-600 text-blue-600'
-                : 'border-transparent text-slate-600 hover:text-slate-900'
-            }`}
-          >
-            <div className="flex items-center gap-2">
-              <Search className="w-5 h-5" />
-              <span>New Engagement</span>
-            </div>
-            <p className="text-xs font-normal mt-1">Who's done this before?</p>
-          </button>
-          <button
-            onClick={() => setActiveScenario('blockers')}
-            className={`px-6 py-3 font-medium transition-colors border-b-2 ${
-              activeScenario === 'blockers'
-                ? 'border-blue-600 text-blue-600'
-                : 'border-transparent text-slate-600 hover:text-slate-900'
-            }`}
-          >
-            <div className="flex items-center gap-2">
-              <AlertCircle className="w-5 h-5" />
-              <span>Ongoing Team with Blockers</span>
-            </div>
-            <p className="text-xs font-normal mt-1">I'm having this issue</p>
-          </button>
+        {/* Horizontal journey strip - above the card */}
+        <div className="flex overflow-x-auto gap-0 mb-6 pb-2 -mx-1 scrollbar-thin">
+          <div className="flex items-stretch min-w-0 rounded-xl border border-slate-200 bg-gradient-to-r from-slate-50 to-slate-100/50 overflow-hidden">
+            {journeySteps.map((step, index) => {
+              const isActive = activeScenario === step.key;
+              const personaStyles = {
+                strategist: { active: 'bg-blue-500 text-white', inactive: 'bg-white text-slate-600 hover:bg-blue-50 hover:text-blue-700', label: 'Deployment Strategist' },
+                'product-council': { active: 'bg-purple-500 text-white', inactive: 'bg-white text-slate-600 hover:bg-purple-50 hover:text-purple-700', label: 'Product Council' },
+                leadership: { active: 'bg-teal-500 text-white', inactive: 'bg-white text-slate-600 hover:bg-teal-50 hover:text-teal-700', label: 'Leadership' },
+              };
+              const style = personaStyles[step.persona];
+              const Icon = step.icon;
+              return (
+                <div key={step.key} className="flex items-stretch">
+                  {index > 0 && (
+                    <div className="w-px bg-slate-200 self-stretch flex-shrink-0" aria-hidden />
+                  )}
+                  <button
+                    onClick={() => setActiveScenario(step.key)}
+                    className={`flex items-center gap-3 px-4 py-3 min-w-[130px] md:min-w-[150px] text-left transition-all ${
+                      isActive ? style.active : style.inactive
+                    }`}
+                  >
+                    <div className={`w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 border-2 shadow-sm ${
+                      isActive ? 'bg-white/20 border-white' : 'border-slate-300 bg-white'
+                    }`}>
+                      <Icon className="w-5 h-5" />
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <p className={`font-semibold text-sm ${isActive ? 'text-white' : 'text-slate-900'}`}>
+                        {step.label}
+                      </p>
+                      <p className={`text-xs mt-0.5 ${isActive ? 'text-white/90' : 'text-slate-500'}`}>
+                        {step.subtitle}
+                      </p>
+                      <p className={`text-[10px] mt-1 uppercase tracking-wide ${isActive ? 'text-white/70' : 'text-slate-400'}`}>
+                        {style.label}
+                      </p>
+                    </div>
+                  </button>
+                </div>
+              );
+            })}
+          </div>
         </div>
 
+        {/* Card container - full width prototype */}
+        <div className="rounded-2xl border-2 border-slate-200 bg-white shadow-xl overflow-hidden">
+          <div className="p-6 lg:p-8">
         {/* Prototype Embed Area */}
         <div className="mb-6">
           <motion.div
@@ -68,31 +94,28 @@ export default function Prototype() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
           >
-            {activeScenario === 'new-engagement' ? (
-              <Scenario1Prototype />
-            ) : (
-              <Scenario2Prototype />
-            )}
+            {activeScenario === 'project-startup' && <Scenario1Prototype />}
+            {activeScenario === 'weekly-checkin' && <Scenario2Prototype />}
+            {activeScenario === 'leadership' && <Scenario3LeadershipInsights />}
           </motion.div>
         </div>
 
         {/* Scenario Details */}
         <div className="grid md:grid-cols-2 gap-6">
-          {activeScenario === 'new-engagement' ? (
+          {activeScenario === 'project-startup' ? (
             <>
               <div className="p-6 rounded-xl bg-blue-50 border border-blue-200">
                 <h4 className="font-bold text-slate-900 mb-3 flex items-center gap-2">
                   <Search className="w-5 h-5 text-blue-600" />
-                  Scenario: New Engagement
+                  Scenario: Project Startup
                 </h4>
                 <p className="text-slate-700 mb-4">
                   A Deployment Strategist is starting a new project and needs to know if similar work has been done before.
                 </p>
                 <ul className="space-y-2 text-sm text-slate-600">
-                  <li>• Agent surfaces 4 most similar project channels</li>
-                  <li>• Provides summaries of solutions from past engagements</li>
-                  <li>• Ranks projects by similarity and ROI</li>
-                  <li>• Connects to the right people automatically</li>
+                  <li>• Agent surfaces similar projects and key documents</li>
+                  <li>• Returns contacts from other projects</li>
+                  <li>• Updates saved to Slack Canvas (searchable)</li>
                 </ul>
               </div>
               <div className="p-6 rounded-xl bg-slate-50 border border-slate-200">
@@ -102,28 +125,25 @@ export default function Prototype() {
                 </h4>
                 <ul className="space-y-2 text-sm text-slate-600">
                   <li>✓ Automatic project matching</li>
-                  <li>✓ Solution summarization</li>
-                  <li>✓ Similarity ranking</li>
-                  <li>✓ Team connection</li>
-                  <li>✓ Knowledge surfacing (no search needed)</li>
+                  <li>✓ Document library surfacing</li>
+                  <li>✓ Slack Canvas summary</li>
                 </ul>
               </div>
             </>
-          ) : (
+          ) : activeScenario === 'weekly-checkin' ? (
             <>
               <div className="p-6 rounded-xl bg-amber-50 border border-amber-200">
                 <h4 className="font-bold text-slate-900 mb-3 flex items-center gap-2">
                   <AlertCircle className="w-5 h-5 text-amber-600" />
-                  Scenario: Ongoing Team with Blockers
+                  Scenario: Weekly Check-in
                 </h4>
                 <p className="text-slate-700 mb-4">
-                  A team hits a blocker and needs to find if someone else has solved this problem.
+                  Slack prompts the user on Friday to submit their weekly update. The agent already knows project history (Shark Ninja) and follows up with guided questions.
                 </p>
                 <ul className="space-y-2 text-sm text-slate-600">
-                  <li>• Agent identifies teams working on similar issues</li>
-                  <li>• Surfaces already-delivered solutions</li>
-                  <li>• Highlights patterns (e.g., "3 teams facing voice agent issues")</li>
-                  <li>• Provides real-time, recency-ranked updates</li>
+                  <li>• Agent-initiated Friday reminder</li>
+                  <li>• Guided follow-up collects accomplishments, blockers, and account metadata</li>
+                  <li>• Updates saved to Slack Canvas (searchable)</li>
                 </ul>
               </div>
               <div className="p-6 rounded-xl bg-slate-50 border border-slate-200">
@@ -132,23 +152,51 @@ export default function Prototype() {
                   Key Features Demonstrated
                 </h4>
                 <ul className="space-y-2 text-sm text-slate-600">
-                  <li>✓ Blocker pattern detection</li>
-                  <li>✓ Solution discovery</li>
-                  <li>✓ Real-time knowledge</li>
-                  <li>✓ Recency ranking</li>
-                  <li>✓ Automatic notifications</li>
+                  <li>✓ Proactive prompting</li>
+                  <li>✓ Project context awareness</li>
+                  <li>✓ Slack Canvas summary</li>
                 </ul>
               </div>
             </>
-          )}
+          ) : activeScenario === 'leadership' ? (
+            <>
+              <div className="p-6 rounded-xl bg-purple-50 border border-purple-200">
+                <h4 className="font-bold text-slate-900 mb-3 flex items-center gap-2">
+                  <BarChart3 className="w-5 h-5 text-purple-600" />
+                  Scenario: Leadership Insights
+                </h4>
+                <p className="text-slate-700 mb-4">
+                  Leaders get a proactive view of themes across FDE projects—common blockers, wins, and product council callouts.
+                </p>
+                <ul className="space-y-2 text-sm text-slate-600">
+                  <li>• Aggregated themes from team check-ins</li>
+                  <li>• Common blockers and trends</li>
+                  <li>• Rolled up to leadership Canvas</li>
+                </ul>
+              </div>
+              <div className="p-6 rounded-xl bg-slate-50 border border-slate-200">
+                <h4 className="font-bold text-slate-900 mb-3 flex items-center gap-2">
+                  <Info className="w-5 h-5 text-slate-600" />
+                  Key Features Demonstrated
+                </h4>
+                <ul className="space-y-2 text-sm text-slate-600">
+                  <li>✓ Proactive surfacing</li>
+                  <li>✓ Theme aggregation</li>
+                  <li>✓ Product council callouts</li>
+                </ul>
+              </div>
+            </>
+          ) : null}
         </div>
 
         {/* Instructions */}
         <div className="mt-6 p-4 rounded-lg bg-slate-100 border border-slate-300">
           <p className="text-sm text-slate-700">
-            <strong>How to interact:</strong> Click through the prototype to see how FDE Pulse responds to different 
-            scenarios. The agent adapts its questions and surfaces relevant information automatically.
+            <strong>How to interact:</strong> Click the send icon to progress each conversation. Updates are saved to 
+            Slack Canvas—searchable by Slackbot and rolled up to leadership and product council.
           </p>
+        </div>
+          </div>
         </div>
       </motion.div>
     </section>

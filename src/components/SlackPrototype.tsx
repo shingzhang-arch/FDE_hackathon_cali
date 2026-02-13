@@ -1,12 +1,23 @@
-import type { ReactNode } from 'react';
-import { Hash, Plus, Search } from 'lucide-react';
+import { useState, type ReactNode } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Hash, Plus, Search, Send, FileText } from 'lucide-react';
+import SlackCanvasPanel from './SlackCanvasPanel';
 
 interface SlackPrototypeProps {
   children: ReactNode;
   channelName?: string;
+  inputBarContent?: string;
+  onSend?: () => void;
+  sendDisabled?: boolean;
+  showCanvasPanel?: boolean;
+  canvasContent?: ReactNode;
+  canvasTitle?: string;
+  canvasFooterLabel?: string;
 }
 
-export default function SlackPrototype({ children, channelName = '#fde-weekly-customer-update' }: SlackPrototypeProps) {
+export default function SlackPrototype({ children, channelName = '#fde-weekly-customer-update', inputBarContent, onSend, sendDisabled = false, showCanvasPanel = false, canvasContent, canvasTitle = 'Canvas', canvasFooterLabel }: SlackPrototypeProps) {
+  const [canvasOpen, setCanvasOpen] = useState(false);
+
   return (
     <div className="rounded-2xl border-2 border-slate-200 overflow-hidden bg-white shadow-xl">
       {/* Browser-like header */}
@@ -59,27 +70,96 @@ export default function SlackPrototype({ children, channelName = '#fde-weekly-cu
           </div>
         </div>
 
-        {/* Main Content Area */}
-        <div className="flex-1 flex flex-col bg-white">
+        {/* Main Content Area - flex to allow Canvas panel on right */}
+        <div className="flex-1 flex flex-col bg-white min-w-0">
           {/* Channel Header */}
           <div className="h-14 border-b border-slate-200 flex items-center px-4 bg-white">
             <Hash className="w-5 h-5 text-slate-600 mr-2" />
             <span className="font-semibold text-slate-900">{channelName}</span>
             <div className="ml-4 text-sm text-slate-500">FDE Pulse AI Agent</div>
+            {showCanvasPanel && canvasContent && (
+              <button
+                type="button"
+                onClick={() => setCanvasOpen((prev) => !prev)}
+                className={`ml-auto flex items-center gap-1.5 px-2 py-1 rounded border transition-colors ${
+                  canvasOpen
+                    ? 'bg-blue-100 border-blue-300 text-blue-800'
+                    : 'bg-white border-blue-200 text-blue-700 hover:bg-blue-50'
+                }`}
+                aria-pressed={canvasOpen}
+                aria-label={canvasOpen ? 'Hide canvas' : 'Show canvas'}
+              >
+                <FileText className="w-4 h-4 text-blue-600" />
+                <span className="text-xs font-medium">Canvas</span>
+              </button>
+            )}
           </div>
 
-          {/* Messages Area */}
-          <div className="flex-1 overflow-y-auto p-4 bg-[#F8F8F8]">
-            {children}
-          </div>
+          {/* Messages + Input */}
+          <div className="flex-1 flex flex-col min-h-0 relative">
+            {/* Messages Area */}
+            <div className="flex-1 overflow-y-auto p-4 bg-[#F8F8F8]">
+              {children}
+            </div>
 
-          {/* Message Input */}
-          <div className="border-t border-slate-200 p-4 bg-white">
-            <div className="flex items-center gap-2">
-              <div className="flex-1 bg-slate-50 rounded-lg px-4 py-2 text-sm text-slate-600 border border-slate-200">
-                Message #{channelName.replace('#', '')}
+            {/* Message Input */}
+            <div className="border-t border-slate-200 p-4 bg-white">
+              <div className="flex items-center gap-2">
+                <div className={`flex-1 rounded-lg px-4 py-2.5 text-sm border ${
+                  inputBarContent 
+                    ? 'bg-white border-slate-300 text-slate-900' 
+                    : 'bg-slate-50 border-slate-200 text-slate-500'
+                }`}>
+                  {inputBarContent || `Message #${channelName.replace('#', '')}`}
+                </div>
+                {inputBarContent && onSend && (
+                  <button
+                    onClick={onSend}
+                    disabled={sendDisabled}
+                    className={`p-2.5 rounded-lg flex-shrink-0 transition-colors ${
+                      sendDisabled
+                        ? 'bg-slate-50 text-slate-400 cursor-not-allowed'
+                        : 'bg-slate-100 hover:bg-slate-200 text-slate-600 hover:text-slate-800'
+                    }`}
+                    aria-label="Send message"
+                  >
+                    <Send className="w-5 h-5" strokeWidth={2} />
+                  </button>
+                )}
               </div>
             </div>
+
+            {/* Canvas overlay - slides in from right when button clicked */}
+            <AnimatePresence>
+              {showCanvasPanel && canvasContent && canvasOpen && (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                  className="absolute inset-0 z-10 flex justify-end bg-black/20"
+                  onClick={() => setCanvasOpen(false)}
+                >
+                  <motion.div
+                    initial={{ x: 340 }}
+                    animate={{ x: 0 }}
+                    exit={{ x: 340 }}
+                    transition={{ duration: 0.3, ease: 'easeOut' }}
+                    className="h-full shadow-xl"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <SlackCanvasPanel
+                      content={canvasContent}
+                      title={canvasTitle}
+                      show={true}
+                      footerLabel={canvasFooterLabel}
+                      defaultExpanded={true}
+                      onClose={() => setCanvasOpen(false)}
+                    />
+                  </motion.div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
         </div>
       </div>
