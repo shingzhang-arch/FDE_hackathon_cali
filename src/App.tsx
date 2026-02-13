@@ -1,49 +1,34 @@
 import PresentationLayout from './components/PresentationLayout';
-import NorthStar from './components/NorthStar';
-import ValueProposition from './components/ValueProposition';
-import BusinessChallenge from './components/BusinessChallenge';
-import Solution from './components/Solution';
-import UserJourney from './components/UserJourney';
-import Features from './components/Features';
-import KPIs from './components/KPIs';
-import ComplexityToImplement from './components/ComplexityToImplement';
-import BusinessValue from './components/BusinessValue';
+import HeroSection from './components/HeroSection';
+import ProblemSection from './components/ProblemSection';
+import SolutionSection from './components/SolutionSection';
 import Prototype from './components/Prototype';
-import SolutionDetails from './components/SolutionDetails';
-import Roadmap from './components/Roadmap';
+import BackendSection from './components/BackendSection';
+import BusinessValue from './components/BusinessValue';
+import WhyWeWinSection from './components/WhyWeWinSection';
 import './index.css';
 
 const sections = [
-  { id: 'north-star', title: 'North Star' },
-  { id: 'value-proposition', title: 'Value Proposition' },
-  { id: 'business-challenge', title: 'Business Challenge' },
-  { id: 'solution', title: 'Solution' },
-  { id: 'journey', title: 'User Journey' },
-  { id: 'features', title: 'Features' },
-  { id: 'kpis', title: 'KPIs' },
-  { id: 'complexity', title: 'Complexity to Implement' },
-  { id: 'business-value', title: 'Business Value' },
+  { id: 'hero', title: 'FDE Pulse' },
+  { id: 'problem', title: 'The Problem' },
+  { id: 'solution', title: 'The Solution' },
   { id: 'prototype', title: 'Prototype' },
-  { id: 'solution-details', title: 'Solution Details' },
-  { id: 'roadmap', title: 'Roadmap' },
+  { id: 'backend', title: 'The Backend' },
+  { id: 'business-value', title: 'Business Value' },
+  { id: 'why-we-win', title: 'Why We Win' },
 ];
 
 function App() {
   return (
     <PresentationLayout sections={sections}>
-      <NorthStar />
-      <ValueProposition />
-      <BusinessChallenge />
-      <Solution />
-      <UserJourney />
-      <Features />
-      <KPIs />
-      <ComplexityToImplement />
-      <BusinessValue />
+      <HeroSection />
+      <ProblemSection />
+      <SolutionSection />
       <Prototype />
-      <SolutionDetails />
-      <Roadmap />
-      
+      <BackendSection />
+      <BusinessValue />
+      <WhyWeWinSection />
+
       {/* Footer */}
       <footer className="mt-24 pt-8 border-t border-slate-200 text-center">
         <p className="text-slate-500 text-sm">
