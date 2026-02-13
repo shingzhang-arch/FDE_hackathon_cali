@@ -1,14 +1,12 @@
 import { useState } from 'react';
 import { 
   Star, 
-  Target, 
   AlertTriangle, 
-  BarChart3, 
-  Zap, 
-  TrendingUp, 
+  Lightbulb, 
   PlayCircle, 
   Settings, 
-  Map,
+  TrendingUp, 
+  Trophy,
   Menu,
   X
 } from 'lucide-react';
@@ -25,15 +23,13 @@ interface SidebarNavigationProps {
 }
 
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
-  'north-star': Star,
-  'value-proposition': Target,
-  'business-challenge': AlertTriangle,
-  'kpis': BarChart3,
-  'complexity': Zap,
-  'business-value': TrendingUp,
+  'hero': Star,
+  'problem': AlertTriangle,
+  'solution': Lightbulb,
   'prototype': PlayCircle,
-  'solution-details': Settings,
-  'roadmap': Map,
+  'backend': Settings,
+  'business-value': TrendingUp,
+  'why-we-win': Trophy,
 };
 
 export default function SidebarNavigation({ sections, activeSection }: SidebarNavigationProps) {
@@ -84,7 +80,7 @@ export default function SidebarNavigation({ sections, activeSection }: SidebarNa
         {/* Header */}
         <div className="p-6 border-b border-slate-100 sticky top-0 bg-slate-50/50 backdrop-blur-sm">
           <div className="flex items-center gap-3 mb-2">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#6B46C1] to-[#14B8A6] flex items-center justify-center">
               <Star className="w-5 h-5 text-white" />
             </div>
             <div>
@@ -98,7 +94,7 @@ export default function SidebarNavigation({ sections, activeSection }: SidebarNa
         <nav className="p-4">
           <ul className="space-y-1">
             {sections.map((section) => {
-              const isActive = activeSection === section.id || (!activeSection && section.id === 'north-star');
+              const isActive = activeSection === section.id || (!activeSection && section.id === 'hero');
               const IconComponent = iconMap[section.id] || Star;
               
               return (
@@ -110,12 +106,12 @@ export default function SidebarNavigation({ sections, activeSection }: SidebarNa
                       transition-all duration-200 flex items-center gap-3
                       ${
                         isActive
-                          ? 'bg-blue-50 text-blue-700 border-l-4 border-blue-600'
+                          ? 'bg-purple-50 text-[#6B46C1] border-l-4 border-[#6B46C1]'
                           : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
                       }
                     `}
                   >
-                    <span className={isActive ? 'text-blue-600' : 'text-slate-400'}>
+                    <span className={isActive ? 'text-[#6B46C1]' : 'text-slate-400'}>
                       <IconComponent className="w-5 h-5" />
                     </span>
                     <span>{section.title}</span>

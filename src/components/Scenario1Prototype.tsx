@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import SlackPrototype from './SlackPrototype';
-import { Bot, User, CheckCircle2, ExternalLink } from 'lucide-react';
+import { User, CheckCircle2 } from 'lucide-react';
 
 interface Message {
   id: number;
@@ -20,17 +20,20 @@ export default function Scenario1Prototype() {
 
   const agentFirstResponse = (
     <div className="space-y-4">
+      <p className="text-sm text-slate-600">
+        Great to hear you&apos;re kicking off a voice agent project and have a workshop planned for next week. Here are some similar projects and resources that might help you get started:
+      </p>
       <div>
         <p className="text-xs font-semibold text-green-700 uppercase tracking-wide mb-1.5">Delivered (similar use cases)</p>
         <ul className="text-sm text-slate-700 space-y-1">
           <li>
-            <a href="#" className="text-blue-600 hover:text-blue-700 inline-flex items-center gap-1">
-              Blue Cross and Blue Shield: Voice agent for customer service - Q4 2025 <ExternalLink className="w-3 h-3" />
+            <a href="#" className="text-blue-600 hover:text-blue-700 hover:underline">
+              Blue Cross and Blue Shield: Voice agent for customer service - Q4 2025
             </a>
           </li>
           <li>
-            <a href="#" className="text-blue-600 hover:text-blue-700 inline-flex items-center gap-1">
-              Zing Health: Voice analytics dashboard - Q3 2025 <ExternalLink className="w-3 h-3" />
+            <a href="#" className="text-blue-600 hover:text-blue-700 hover:underline">
+              Zing Health: Voice analytics dashboard - Q3 2025
             </a>
           </li>
         </ul>
@@ -39,28 +42,28 @@ export default function Scenario1Prototype() {
         <p className="text-xs font-semibold text-amber-700 uppercase tracking-wide mb-1.5">In-flight (similar projects)</p>
         <ul className="text-sm text-slate-700 space-y-1">
           <li>
-            <a href="#" className="text-blue-600 hover:text-blue-700 inline-flex items-center gap-1">
-              Disney: Voice integration with Data Cloud - In progress <ExternalLink className="w-3 h-3" />
+            <a href="#" className="text-blue-600 hover:text-blue-700 hover:underline">
+              Disney: Voice integration with Data Cloud - In progress
             </a>
           </li>
           <li>
-            <a href="#" className="text-blue-600 hover:text-blue-700 inline-flex items-center gap-1">
-              Shark Ninja: Product recommendations - Voice agent phase starting <ExternalLink className="w-3 h-3" />
+            <a href="#" className="text-blue-600 hover:text-blue-700 hover:underline">
+              Shark Ninja: Product recommendations - Voice agent phase starting
             </a>
           </li>
         </ul>
       </div>
       <div className="pt-3 border-t border-slate-200">
         <p className="text-xs font-semibold text-slate-600 uppercase tracking-wide mb-1.5">Workshop preparation</p>
-        <div className="space-y-1.5">
-          <a href="#" className="text-sm text-blue-600 hover:text-blue-700 inline-flex items-center gap-1 block">
-            Workshop planning guide <ExternalLink className="w-3 h-3" />
+        <div className="space-y-2">
+          <a href="#" className="text-sm text-blue-600 hover:text-blue-700 hover:underline block">
+            Workshop planning guide
           </a>
-          <a href="#" className="text-sm text-blue-600 hover:text-blue-700 inline-flex items-center gap-1 block">
-            Voice agent kickoff checklist <ExternalLink className="w-3 h-3" />
+          <a href="#" className="text-sm text-blue-600 hover:text-blue-700 hover:underline block">
+            Voice agent kickoff checklist
           </a>
-          <a href="#" className="text-sm text-blue-600 hover:text-blue-700 inline-flex items-center gap-1 block">
-            Discovery template <ExternalLink className="w-3 h-3" />
+          <a href="#" className="text-sm text-blue-600 hover:text-blue-700 hover:underline block">
+            Workshop Template
           </a>
         </div>
       </div>
@@ -76,15 +79,15 @@ export default function Scenario1Prototype() {
     </div>
   );
 
-  const agentSharkNinjaResolution = (
-    <div className="space-y-2">
-      <p className="text-sm text-slate-600">
-        I noticed you mentioned Voice integration timeout. Shark Ninja recently resolved a similar issue using the Saks 5th Avenue approach—timeout settings and firewall rules. Would you like me to share those details?
-      </p>
-    </div>
+  const agentSaksSolution = (
+    <p className="text-sm text-slate-600">
+      I noticed you mentioned Voice integration timeout. Shark Ninja recently resolved a similar issue using the{' '}
+      <a href="#" className="text-blue-600 hover:text-blue-700 hover:underline">Saks 5th Avenue solution</a>
+      —timeout settings and firewall rules. Would you like me to share those details?
+    </p>
   );
 
-  const agentSponsorPrompt = (
+  const agentSponsorQuestion = (
     <p className="text-sm text-slate-600">
       Who&apos;s your executive sponsor and how many agents are you updating for?
     </p>
@@ -156,15 +159,15 @@ export default function Scenario1Prototype() {
       { id: 3, type: 'user', content: (<div className="whitespace-pre-line">Set up initial voice agent architecture{'\n'}Completed API integration testing{'\n'}Working on Data Cloud connector</div>), timestamp: '2:37 PM' },
       { id: 4, type: 'agent', content: agentBlockersPrompt, timestamp: '2:38 PM' },
     ],
-    // Step 3: User blockers + features + Agent (Shark Ninja resolution) + Agent ("Executive sponsor and number of agents?")
+    // Step 3: User blockers + features + Agent (Saks solution + sponsor question as 2 messages)
     [
       { id: 1, type: 'user', content: "I'm starting a new project on agent voice capabilities. We had our kickoff this week and are planning a workshop for next week.", timestamp: '2:34 PM' },
       { id: 2, type: 'agent', content: agentFirstResponse, timestamp: '2:34 PM' },
       { id: 3, type: 'user', content: (<div className="whitespace-pre-line">Set up initial voice agent architecture{'\n'}Completed API integration testing{'\n'}Working on Data Cloud connector</div>), timestamp: '2:37 PM' },
       { id: 4, type: 'agent', content: agentBlockersPrompt, timestamp: '2:38 PM' },
       { id: 5, type: 'user', content: 'Voice integration timeout. Meeting Prep: significant defects in progress. Voice, New Agentforce Builder.', timestamp: '2:39 PM' },
-      { id: 6, type: 'agent', content: agentSharkNinjaResolution, timestamp: '2:39 PM' },
-      { id: 7, type: 'agent', content: agentSponsorPrompt, timestamp: '2:40 PM' },
+      { id: 6, type: 'agent', content: agentSaksSolution, timestamp: '2:39 PM' },
+      { id: 7, type: 'agent', content: agentSponsorQuestion, timestamp: '2:39 PM' },
     ],
     // Step 4: User sponsor + count + Agent (full FDE-style summary)
     [
@@ -173,8 +176,8 @@ export default function Scenario1Prototype() {
       { id: 3, type: 'user', content: (<div className="whitespace-pre-line">Set up initial voice agent architecture{'\n'}Completed API integration testing{'\n'}Working on Data Cloud connector</div>), timestamp: '2:37 PM' },
       { id: 4, type: 'agent', content: agentBlockersPrompt, timestamp: '2:38 PM' },
       { id: 5, type: 'user', content: 'Voice integration timeout. Meeting Prep: significant defects in progress. Voice, New Agentforce Builder.', timestamp: '2:39 PM' },
-      { id: 6, type: 'agent', content: agentSharkNinjaResolution, timestamp: '2:39 PM' },
-      { id: 7, type: 'agent', content: agentSponsorPrompt, timestamp: '2:40 PM' },
+      { id: 6, type: 'agent', content: agentSaksSolution, timestamp: '2:39 PM' },
+      { id: 7, type: 'agent', content: agentSponsorQuestion, timestamp: '2:39 PM' },
       { id: 8, type: 'user', content: 'Ajay Angadala - Managing Director. 3 agents.', timestamp: '2:41 PM' },
       { id: 9, type: 'agent', content: agentFdeSummary, timestamp: '2:41 PM' },
     ],
@@ -185,12 +188,12 @@ export default function Scenario1Prototype() {
       { id: 3, type: 'user', content: (<div className="whitespace-pre-line">Set up initial voice agent architecture{'\n'}Completed API integration testing{'\n'}Working on Data Cloud connector</div>), timestamp: '2:37 PM' },
       { id: 4, type: 'agent', content: agentBlockersPrompt, timestamp: '2:38 PM' },
       { id: 5, type: 'user', content: 'Voice integration timeout. Meeting Prep: significant defects in progress. Voice, New Agentforce Builder.', timestamp: '2:39 PM' },
-      { id: 6, type: 'agent', content: agentSharkNinjaResolution, timestamp: '2:39 PM' },
-      { id: 7, type: 'agent', content: agentSponsorPrompt, timestamp: '2:40 PM' },
+      { id: 6, type: 'agent', content: agentSaksSolution, timestamp: '2:39 PM' },
+      { id: 7, type: 'agent', content: agentSponsorQuestion, timestamp: '2:39 PM' },
       { id: 8, type: 'user', content: 'Ajay Angadala - Managing Director. 3 agents.', timestamp: '2:41 PM' },
       { id: 9, type: 'agent', content: agentFdeSummary, timestamp: '2:41 PM' },
       { id: 10, type: 'user', content: 'Yup, post it', timestamp: '2:42 PM' },
-      { id: 11, type: 'agent', content: (<div className="flex items-center gap-2 text-green-600"><CheckCircle2 className="w-4 h-4" /><span className="text-sm font-medium">Added to Canvas</span></div>), timestamp: '2:42 PM' },
+      { id: 11, type: 'agent', content: (<div className="flex items-center gap-2 text-green-600 animate-pulse-cta"><CheckCircle2 className="w-4 h-4" /><span className="text-sm font-medium">Added to Canvas</span></div>), timestamp: '2:42 PM' },
     ],
   ];
 
@@ -291,12 +294,16 @@ export default function Scenario1Prototype() {
   }, [isAgentThinking]);
 
   useEffect(() => {
-    const el = messagesEndRef.current;
-    if (!el) return;
-    const scrollParent = el.closest('.overflow-y-auto');
-    if (scrollParent) {
-      scrollParent.scrollTo({ top: scrollParent.scrollHeight, behavior: 'smooth' });
-    }
+    const scrollToBottom = () => {
+      const el = messagesEndRef.current;
+      if (!el) return;
+      const scrollParent = el.closest('.overflow-y-auto');
+      if (scrollParent) {
+        scrollParent.scrollTo({ top: scrollParent.scrollHeight, behavior: 'smooth' });
+      }
+    };
+    const timer = setTimeout(scrollToBottom, 350);
+    return () => clearTimeout(timer);
   }, [step, pendingUserMessage, isAgentThinking]);
 
   const handleReset = () => {
@@ -328,8 +335,8 @@ export default function Scenario1Prototype() {
                 className={`flex gap-3 ${message.type === 'user' ? 'justify-end' : 'justify-start'}`}
               >
                 {message.type === 'agent' && (
-                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center flex-shrink-0">
-                    <Bot className="w-4 h-4 text-white" />
+                  <div className="w-8 h-8 rounded-full overflow-hidden flex-shrink-0 bg-slate-100">
+                    <img src="/images/slackbot.png" alt="Slackbot" className="w-full h-full object-cover" />
                   </div>
                 )}
                 <div className={`max-w-[70%] ${message.type === 'user' ? 'order-1' : ''}`}>
@@ -384,8 +391,8 @@ export default function Scenario1Prototype() {
                 transition={{ duration: 0.3 }}
                 className="flex gap-3 justify-start"
               >
-                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center flex-shrink-0">
-                  <Bot className="w-4 h-4 text-white" />
+                <div className="w-8 h-8 rounded-full overflow-hidden flex-shrink-0 bg-slate-100">
+                  <img src="/images/slackbot.png" alt="Slackbot" className="w-full h-full object-cover" />
                 </div>
                 <div className="rounded-2xl px-4 py-3 bg-white rounded-tl-sm border border-slate-200">
                   <div className="flex gap-1">

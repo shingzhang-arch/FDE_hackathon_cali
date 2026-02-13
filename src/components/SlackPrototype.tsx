@@ -1,7 +1,11 @@
-import { useState, type ReactNode } from 'react';
+import { useState, useEffect, type ReactNode, type MutableRefObject } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Hash, Plus, Search, Send, FileText } from 'lucide-react';
 import SlackCanvasPanel from './SlackCanvasPanel';
+
+export interface CanvasOpenRef {
+  open: () => void;
+}
 
 interface SlackPrototypeProps {
   children: ReactNode;
@@ -13,13 +17,22 @@ interface SlackPrototypeProps {
   canvasContent?: ReactNode;
   canvasTitle?: string;
   canvasFooterLabel?: string;
+  canvasOpenRef?: MutableRefObject<CanvasOpenRef | null>;
 }
 
-export default function SlackPrototype({ children, channelName = '#fde-weekly-customer-update', inputBarContent, onSend, sendDisabled = false, showCanvasPanel = false, canvasContent, canvasTitle = 'Canvas', canvasFooterLabel }: SlackPrototypeProps) {
+export default function SlackPrototype({ children, channelName = '#fde-weekly-customer-update', inputBarContent, onSend, sendDisabled = false, showCanvasPanel = false, canvasContent, canvasTitle = 'Canvas', canvasFooterLabel, canvasOpenRef }: SlackPrototypeProps) {
   const [canvasOpen, setCanvasOpen] = useState(false);
 
+  useEffect(() => {
+    if (canvasOpenRef) {
+      canvasOpenRef.current = {
+        open: () => setCanvasOpen((prev) => !prev),
+      };
+    }
+  }, [canvasOpenRef]);
+
   return (
-    <div className="rounded-2xl border-2 border-slate-200 overflow-hidden bg-white shadow-xl">
+    <div className="rounded-2xl border-2 border-slate-200 overflow-hidden bg-white shadow-xl w-full min-w-0">
       {/* Browser-like header */}
       <div className="p-4 bg-white border-b border-slate-200 flex items-center justify-between">
         <div className="flex items-center gap-2">
@@ -31,7 +44,7 @@ export default function SlackPrototype({ children, channelName = '#fde-weekly-cu
       </div>
 
       {/* Slack UI Container */}
-      <div className="flex h-[600px] bg-slate-50">
+      <div className="flex min-h-[750px] h-[800px] bg-slate-50">
         {/* Sidebar */}
         <div className="w-64 bg-gradient-to-b from-[#4A154B] to-[#350D36] flex flex-col">
           {/* Sidebar Header */}
@@ -73,7 +86,7 @@ export default function SlackPrototype({ children, channelName = '#fde-weekly-cu
         {/* Main Content Area - flex to allow Canvas panel on right */}
         <div className="flex-1 flex flex-col bg-white min-w-0">
           {/* Channel Header */}
-          <div className="h-14 border-b border-slate-200 flex items-center px-4 bg-white">
+          <div className="flex-shrink-0 h-14 border-b border-slate-200 flex items-center px-4 bg-white">
             <Hash className="w-5 h-5 text-slate-600 mr-2" />
             <span className="font-semibold text-slate-900">{channelName}</span>
             <div className="ml-4 text-sm text-slate-500">FDE Pulse AI Agent</div>
@@ -81,7 +94,7 @@ export default function SlackPrototype({ children, channelName = '#fde-weekly-cu
               <button
                 type="button"
                 onClick={() => setCanvasOpen((prev) => !prev)}
-                className={`ml-auto flex items-center gap-1.5 px-2 py-1 rounded border transition-colors ${
+                className={`ml-auto flex items-center gap-1.5 px-2 py-1 rounded border transition-colors animate-pulse-cta ${
                   canvasOpen
                     ? 'bg-blue-100 border-blue-300 text-blue-800'
                     : 'bg-white border-blue-200 text-blue-700 hover:bg-blue-50'
@@ -102,10 +115,10 @@ export default function SlackPrototype({ children, channelName = '#fde-weekly-cu
               {children}
             </div>
 
-            {/* Message Input */}
-            <div className="border-t border-slate-200 p-4 bg-white">
-              <div className="flex items-center gap-2">
-                <div className={`flex-1 rounded-lg px-4 py-2.5 text-sm border ${
+            {/* Message Input - flex-shrink-0 ensures it's never compressed and stays visible */}
+            <div className="flex-shrink-0 border-t border-slate-200 p-4 bg-white">
+              <div className="flex items-center gap-2 min-w-0">
+                <div className={`flex-1 min-w-0 rounded-lg px-4 py-2.5 text-sm border ${
                   inputBarContent 
                     ? 'bg-white border-slate-300 text-slate-900' 
                     : 'bg-slate-50 border-slate-200 text-slate-500'
@@ -119,7 +132,7 @@ export default function SlackPrototype({ children, channelName = '#fde-weekly-cu
                     className={`p-2.5 rounded-lg flex-shrink-0 transition-colors ${
                       sendDisabled
                         ? 'bg-slate-50 text-slate-400 cursor-not-allowed'
-                        : 'bg-slate-100 hover:bg-slate-200 text-slate-600 hover:text-slate-800'
+                        : 'bg-slate-100 hover:bg-slate-200 text-slate-600 hover:text-slate-800 animate-pulse-cta'
                     }`}
                     aria-label="Send message"
                   >

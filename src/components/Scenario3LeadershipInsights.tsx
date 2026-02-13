@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import SlackPrototype from './SlackPrototype';
-import { Bot, User, AlertCircle, CheckCircle2, Target } from 'lucide-react';
+import { User, AlertCircle, CheckCircle2, Target } from 'lucide-react';
 
 interface Message {
   id: number;
@@ -12,6 +12,20 @@ interface Message {
 
 export default function Scenario3LeadershipInsights() {
   const [step, setStep] = useState(0);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const scrollToBottom = () => {
+      const el = messagesEndRef.current;
+      if (!el) return;
+      const scrollParent = el.closest('.overflow-y-auto');
+      if (scrollParent) {
+        scrollParent.scrollTo({ top: scrollParent.scrollHeight, behavior: 'smooth' });
+      }
+    };
+    const timer = setTimeout(scrollToBottom, 350);
+    return () => clearTimeout(timer);
+  }, [step]);
 
   const conversationSteps: Message[][] = [
     // Step 0: Agent surfaces leadership themes (proactive - no user message first)
@@ -23,30 +37,30 @@ export default function Scenario3LeadershipInsights() {
           <div>
             <p className="mb-3">Here are the top themes across FDE projects this week:</p>
             <div className="space-y-3 mt-4">
-              <div className="p-4 bg-amber-50 rounded-lg border border-amber-200">
+              <div className="p-4 bg-white rounded-lg border border-slate-200">
                 <div className="flex items-center gap-2 mb-2">
                   <AlertCircle className="w-4 h-4 text-amber-600" />
-                  <span className="font-semibold text-amber-900">3 projects blocked on Data Cloud connectors</span>
+                  <span className="font-semibold text-slate-900">3 projects blocked on Data Cloud connectors</span>
                 </div>
-                <p className="text-sm text-amber-800">
+                <p className="text-sm text-slate-700">
                   Teams Alpha, Beta, and ADP demo all facing connection timeout issues. Solutions identified: timeout config, firewall rules, proxy settings.
                 </p>
               </div>
-              <div className="p-4 bg-green-50 rounded-lg border border-green-200">
+              <div className="p-4 bg-white rounded-lg border border-slate-200">
                 <div className="flex items-center gap-2 mb-2">
                   <CheckCircle2 className="w-4 h-4 text-green-600" />
-                  <span className="font-semibold text-green-900">2 teams completed voice integrations</span>
+                  <span className="font-semibold text-slate-900">2 teams completed voice integrations</span>
                 </div>
-                <p className="text-sm text-green-800">
+                <p className="text-sm text-slate-700">
                   Team 1 and Team 3 delivered. Architecture docs and contacts available in Canvas.
                 </p>
               </div>
-              <div className="p-4 bg-purple-50 rounded-lg border border-purple-200">
+              <div className="p-4 bg-white rounded-lg border border-slate-200">
                 <div className="flex items-center gap-2 mb-2">
                   <Target className="w-4 h-4 text-purple-600" />
-                  <span className="font-semibold text-purple-900">Product priority request: better error handling</span>
+                  <span className="font-semibold text-slate-900">Product priority request: better error handling</span>
                 </div>
-                <p className="text-sm text-purple-800">
+                <p className="text-sm text-slate-700">
                   Multiple teams need improved error handling and retry logic for Data Cloud connectors. Critical for ADP demo.
                 </p>
               </div>
@@ -66,30 +80,30 @@ export default function Scenario3LeadershipInsights() {
           <div>
             <p className="mb-3">Here are the top themes across FDE projects this week:</p>
             <div className="space-y-3 mt-4">
-              <div className="p-4 bg-amber-50 rounded-lg border border-amber-200">
+              <div className="p-4 bg-white rounded-lg border border-slate-200">
                 <div className="flex items-center gap-2 mb-2">
                   <AlertCircle className="w-4 h-4 text-amber-600" />
-                  <span className="font-semibold text-amber-900">3 projects blocked on Data Cloud connectors</span>
+                  <span className="font-semibold text-slate-900">3 projects blocked on Data Cloud connectors</span>
                 </div>
-                <p className="text-sm text-amber-800">
+                <p className="text-sm text-slate-700">
                   Teams Alpha, Beta, and ADP demo all facing connection timeout issues.
                 </p>
               </div>
-              <div className="p-4 bg-green-50 rounded-lg border border-green-200">
+              <div className="p-4 bg-white rounded-lg border border-slate-200">
                 <div className="flex items-center gap-2 mb-2">
                   <CheckCircle2 className="w-4 h-4 text-green-600" />
-                  <span className="font-semibold text-green-900">2 teams completed voice integrations</span>
+                  <span className="font-semibold text-slate-900">2 teams completed voice integrations</span>
                 </div>
-                <p className="text-sm text-green-800">
+                <p className="text-sm text-slate-700">
                   Team 1 and Team 3 delivered.
                 </p>
               </div>
-              <div className="p-4 bg-purple-50 rounded-lg border border-purple-200">
+              <div className="p-4 bg-white rounded-lg border border-slate-200">
                 <div className="flex items-center gap-2 mb-2">
                   <Target className="w-4 h-4 text-purple-600" />
-                  <span className="font-semibold text-purple-900">Product priority request: better error handling</span>
+                  <span className="font-semibold text-slate-900">Product priority request: better error handling</span>
                 </div>
-                <p className="text-sm text-purple-800">
+                <p className="text-sm text-slate-700">
                   Multiple teams need improved error handling for Data Cloud connectors.
                 </p>
               </div>
@@ -184,8 +198,8 @@ export default function Scenario3LeadershipInsights() {
                 className={`flex gap-3 ${message.type === 'user' ? 'justify-end' : 'justify-start'}`}
               >
                 {message.type === 'agent' && (
-                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center flex-shrink-0">
-                    <Bot className="w-4 h-4 text-white" />
+                  <div className="w-8 h-8 rounded-full overflow-hidden flex-shrink-0 bg-slate-100">
+                    <img src="/images/slackbot.png" alt="Slackbot" className="w-full h-full object-cover" />
                   </div>
                 )}
                 <div className={`max-w-[70%] ${message.type === 'user' ? 'order-1' : ''}`}>
@@ -212,6 +226,7 @@ export default function Scenario3LeadershipInsights() {
               </motion.div>
             ))}
           </AnimatePresence>
+          <div ref={messagesEndRef} className="h-1" aria-hidden />
         </div>
       </SlackPrototype>
 

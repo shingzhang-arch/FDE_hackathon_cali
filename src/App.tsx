@@ -1,47 +1,34 @@
 import PresentationLayout from './components/PresentationLayout';
-import NorthStar from './components/NorthStar';
-import ValueProp from './components/ValueProp';
-import Solution from './components/Solution';
-import UserJourney from './components/UserJourney';
-import Features from './components/Features';
-import KPIs from './components/KPIs';
-import ComplexityToImplement from './components/ComplexityToImplement';
-import BusinessValue from './components/BusinessValue';
+import HeroSection from './components/HeroSection';
+import ProblemSection from './components/ProblemSection';
+import SolutionSection from './components/SolutionSection';
 import Prototype from './components/Prototype';
-import SolutionDetails from './components/SolutionDetails';
-import Roadmap from './components/Roadmap';
-import Archive from './components/Archive';
+import BackendSection from './components/BackendSection';
+import BusinessValue from './components/BusinessValue';
+import WhyWeWinSection from './components/WhyWeWinSection';
 import './index.css';
 
 const sections = [
-  { id: 'north-star', title: 'North Star' },
-  { id: 'value-prop', title: 'Value Prop' },
-  { id: 'solution', title: 'Solution' },
+  { id: 'hero', title: 'FDE Pulse' },
+  { id: 'problem', title: 'The Problem' },
+  { id: 'solution', title: 'The Solution' },
   { id: 'prototype', title: 'Prototype' },
-  { id: 'solution-specs', title: 'Solution Specs' },
-  { id: 'complexity', title: 'Complexity to Implement' },
+  { id: 'backend', title: 'The Backend' },
   { id: 'business-value', title: 'Business Value' },
-  { id: 'roadmap', title: 'Roadmap' },
-  { id: 'archive', title: 'Archive' },
+  { id: 'why-we-win', title: 'Why We Win' },
 ];
 
 function App() {
   return (
     <PresentationLayout sections={sections}>
-      <NorthStar />
-      <ValueProp />
-      <Solution />
+      <HeroSection />
+      <ProblemSection />
+      <SolutionSection />
       <Prototype />
-      <SolutionDetails />
-      <ComplexityToImplement />
+      <BackendSection />
       <BusinessValue />
-      <Roadmap />
-      <Archive>
-        <UserJourney />
-        <Features />
-        <KPIs />
-      </Archive>
-      
+      <WhyWeWinSection />
+
       {/* Footer */}
       <footer className="mt-24 pt-8 border-t border-slate-200 text-center">
         <p className="text-slate-500 text-sm">

@@ -26,10 +26,10 @@ export default function Prototype() {
       >
         {/* Header */}
         <div className="flex items-center gap-3 mb-8">
-          <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-600 to-pink-600 flex items-center justify-center">
+          <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#6B46C1] to-[#14B8A6] flex items-center justify-center">
             <PlayCircle className="w-6 h-6 text-white" />
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-slate-900">Prototype</h2>
+          <h2 className="text-4xl md:text-5xl font-bold text-slate-900">See It In Action</h2>
         </div>
 
         <p className="text-lg text-slate-600 mb-8 max-w-3xl">
@@ -87,7 +87,7 @@ export default function Prototype() {
         <div className="rounded-2xl border-2 border-slate-200 bg-white shadow-xl overflow-hidden">
           <div className="p-6 lg:p-8">
         {/* Prototype Embed Area */}
-        <div className="mb-6">
+        <div className="mb-6 overflow-hidden">
           <motion.div
             key={activeScenario}
             initial={{ opacity: 0, y: 20 }}

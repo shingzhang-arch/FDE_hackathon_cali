@@ -46,7 +46,7 @@ export default function PresentationLayout({ children, sections }: PresentationL
 
       {/* Main Content */}
       <main className="md:ml-64 min-h-screen">
-        <div className="max-w-5xl mx-auto px-6 md:px-8 py-12">
+        <div className="max-w-6xl mx-auto px-6 md:px-8 py-12">
           {children}
         </div>
       </main>
