@@ -178,13 +178,13 @@ export default function Scenario3LeadershipInsights() {
   return (
     <div>
       <SlackPrototype
-        channelName="#fde-leadership"
         inputBarContent={nextUserMessageText}
         onSend={handleSend}
         showCanvasPanel={isFinalStep}
         canvasContent={isFinalStep ? canvasContentLeadership : undefined}
         canvasTitle="Leadership Insights"
         canvasFooterLabel="Searchable by Slackbot · Rolled up to leadership & product council"
+        attachedSkillName="Leadership Insights Skill"
       >
         <div className="space-y-4">
           <AnimatePresence mode="wait">

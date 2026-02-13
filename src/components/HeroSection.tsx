@@ -10,7 +10,7 @@ const teamMembers = [
 
 export default function HeroSection() {
   return (
-    <section id="hero" className="mb-24 scroll-mt-20 -mx-6 md:-mx-8">
+    <section id="hero" className="mb-24 scroll-mt-20 full-bleed">
       <div className="relative min-h-[80vh] bg-gradient-to-br from-purple-50 via-white to-teal-50 overflow-hidden">
         {/* Subtle pulse background */}
         <div className="absolute inset-0 overflow-hidden">
