@@ -322,6 +322,7 @@ export default function Scenario1Prototype() {
         canvasContent={isFinalStep ? canvasContentProjectStartup : undefined}
         canvasTitle="FDE Weekly Customer Update"
         canvasFooterLabel="Searchable by Slackbot · Rolled up to leadership & product council"
+        attachedSkillName="Project Startup Skill"
       >
         <div className="space-y-4">
           <AnimatePresence mode="wait">

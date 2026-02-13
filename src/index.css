@@ -86,6 +86,19 @@ section[id] {
   animation: pulse-cta 1.5s ease-in-out infinite;
 }
 
+/* Full-bleed: break out of max-width container to fill the main area */
+.full-bleed {
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+}
+
+@media (min-width: 768px) {
+  .full-bleed {
+    margin-left: calc(50% - 50vw + 8rem);
+    margin-right: calc(50% - 50vw + 8rem);
+  }
+}
+
 /* Glass effect */
 .glass {
   background: rgba(255, 255, 255, 0.1);

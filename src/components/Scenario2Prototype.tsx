@@ -306,6 +306,7 @@ export default function Scenario2Prototype() {
         canvasTitle="Shark Ninja - Feb 6, 2025"
         canvasFooterLabel="Searchable by Slackbot · Rolled up to leadership & product council"
         canvasOpenRef={canvasOpenRef}
+        attachedSkillName="Weekly Check-in Skill"
       >
         <div className="space-y-4">
           <AnimatePresence mode="wait">
