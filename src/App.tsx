@@ -3,7 +3,8 @@ import HeroSection from './components/HeroSection';
 import ProblemSection from './components/ProblemSection';
 import SolutionSection from './components/SolutionSection';
 import Prototype from './components/Prototype';
-import BackendSection from './components/BackendSection';
+import SkillsSection from './components/SkillsSection';
+import PlatformFutureSection from './components/PlatformFutureSection';
 import BusinessValue from './components/BusinessValue';
 import WhyWeWinSection from './components/WhyWeWinSection';
 import './index.css';
@@ -13,7 +14,8 @@ const sections = [
   { id: 'problem', title: 'The Problem' },
   { id: 'solution', title: 'The Solution' },
   { id: 'prototype', title: 'Prototype' },
-  { id: 'backend', title: 'The Backend' },
+  { id: 'skills', title: 'Skills' },
+  { id: 'platform-future', title: 'Future of Skills' },
   { id: 'business-value', title: 'Business Value' },
   { id: 'why-we-win', title: 'Why We Win' },
 ];
@@ -25,7 +27,8 @@ function App() {
       <ProblemSection />
       <SolutionSection />
       <Prototype />
-      <BackendSection />
+      <SkillsSection />
+      <PlatformFutureSection />
       <BusinessValue />
       <WhyWeWinSection />
 

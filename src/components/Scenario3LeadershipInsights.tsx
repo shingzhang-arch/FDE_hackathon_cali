@@ -205,6 +205,7 @@ export default function Scenario3LeadershipInsights() {
         canvasTitle="Leadership Insights - Feb 10, 2025"
         canvasFooterLabel="Searchable by Slackbot · Rolled up to leadership & product council"
         canvasOpenRef={canvasOpenRef}
+        attachedSkillName="Leadership Insights Skill"
       >
         <div className="space-y-4">
           <AnimatePresence mode="wait">

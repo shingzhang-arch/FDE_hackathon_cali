@@ -37,55 +37,47 @@ export default function Prototype() {
           Click through to see how the agent helps Strategists, FDEs, and Leaders in real-time.
         </p>
 
-        {/* Horizontal journey strip - above the card */}
-        <div className="flex overflow-x-auto gap-0 mb-6 pb-2 -mx-1 scrollbar-thin">
-          <div className="flex items-stretch min-w-0 rounded-xl border border-slate-200 bg-gradient-to-r from-slate-50 to-slate-100/50 overflow-hidden">
-            {journeySteps.map((step, index) => {
-              const isActive = activeScenario === step.key;
-              const personaStyles = {
-                strategist: { active: 'bg-blue-500 text-white', inactive: 'bg-white text-slate-600 hover:bg-blue-50 hover:text-blue-700', label: 'Deployment Strategist' },
-                'product-council': { active: 'bg-purple-500 text-white', inactive: 'bg-white text-slate-600 hover:bg-purple-50 hover:text-purple-700', label: 'Product Council' },
-                leadership: { active: 'bg-teal-500 text-white', inactive: 'bg-white text-slate-600 hover:bg-teal-50 hover:text-teal-700', label: 'Leadership' },
-              };
-              const style = personaStyles[step.persona];
-              const Icon = step.icon;
-              return (
-                <div key={step.key} className="flex items-stretch">
-                  {index > 0 && (
-                    <div className="w-px bg-slate-200 self-stretch flex-shrink-0" aria-hidden />
-                  )}
-                  <button
-                    onClick={() => setActiveScenario(step.key)}
-                    className={`flex items-center gap-3 px-4 py-3 min-w-[130px] md:min-w-[150px] text-left transition-all ${
-                      isActive ? style.active : style.inactive
-                    }`}
-                  >
-                    <div className={`w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 border-2 shadow-sm ${
-                      isActive ? 'bg-white/20 border-white' : 'border-slate-300 bg-white'
-                    }`}>
-                      <Icon className="w-5 h-5" />
-                    </div>
-                    <div className="min-w-0 flex-1">
-                      <p className={`font-semibold text-sm ${isActive ? 'text-white' : 'text-slate-900'}`}>
-                        {step.label}
-                      </p>
-                      <p className={`text-xs mt-0.5 ${isActive ? 'text-white/90' : 'text-slate-500'}`}>
-                        {step.subtitle}
-                      </p>
-                      <p className={`text-[10px] mt-1 uppercase tracking-wide ${isActive ? 'text-white/70' : 'text-slate-400'}`}>
-                        {style.label}
-                      </p>
-                    </div>
-                  </button>
+        {/* Skill selector */}
+        <h3 className="text-lg font-semibold text-slate-900 mb-3">Select a Slackbot Skill</h3>
+        <div className="grid grid-cols-3 gap-0 mb-8 rounded-xl border border-slate-200 overflow-hidden">
+          {journeySteps.map((step, index) => {
+            const isActive = activeScenario === step.key;
+            const personaStyles = {
+              strategist: { active: 'bg-blue-500 text-white', inactive: 'bg-white text-slate-600 hover:bg-blue-50 hover:text-blue-700', label: 'Deployment Strategist' },
+              'product-council': { active: 'bg-purple-500 text-white', inactive: 'bg-white text-slate-600 hover:bg-purple-50 hover:text-purple-700', label: 'Product Council' },
+              leadership: { active: 'bg-teal-500 text-white', inactive: 'bg-white text-slate-600 hover:bg-teal-50 hover:text-teal-700', label: 'Leadership' },
+            };
+            const style = personaStyles[step.persona];
+            const Icon = step.icon;
+            return (
+              <button
+                key={step.key}
+                onClick={() => setActiveScenario(step.key)}
+                className={`flex items-center gap-4 px-5 py-5 text-left transition-all ${
+                  isActive ? style.active : style.inactive
+                } ${index > 0 ? 'border-l border-slate-200' : ''}`}
+              >
+                <div className={`w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0 border-2 shadow-sm ${
+                  isActive ? 'bg-white/20 border-white' : 'border-slate-300 bg-white'
+                }`}>
+                  <Icon className="w-6 h-6" />
                 </div>
-              );
-            })}
-          </div>
+                <div className="min-w-0 flex-1">
+                  <p className={`font-semibold text-base ${isActive ? 'text-white' : 'text-slate-900'}`}>
+                    {step.label}
+                  </p>
+                  <p className={`text-sm mt-0.5 ${isActive ? 'text-white/90' : 'text-slate-500'}`}>
+                    {step.subtitle}
+                  </p>
+                  <p className={`text-xs mt-1 uppercase tracking-wide ${isActive ? 'text-white/70' : 'text-slate-400'}`}>
+                    {style.label}
+                  </p>
+                </div>
+              </button>
+            );
+          })}
         </div>
 
-        {/* Card container - full width prototype */}
-        <div className="rounded-2xl border-2 border-slate-200 bg-white shadow-xl overflow-hidden">
-          <div className="p-6 lg:p-8">
         {/* Prototype Embed Area */}
         <div className="mb-6 overflow-hidden">
           <motion.div
@@ -195,8 +187,6 @@ export default function Prototype() {
             <strong>How to interact:</strong> Click the send icon to progress each conversation. Updates are saved to 
             Slack Canvas—searchable by Slackbot and rolled up to leadership and product council.
           </p>
-        </div>
-          </div>
         </div>
       </motion.div>
     </section>
