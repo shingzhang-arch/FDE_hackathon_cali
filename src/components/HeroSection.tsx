@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion';
-import { Sparkles } from 'lucide-react';
 
 const teamMembers = [
   'Shing Diorio',
@@ -27,40 +26,30 @@ export default function HeroSection() {
         </div>
 
         <div className="relative z-10 max-w-6xl mx-auto px-6 md:px-8 pt-20 pb-32 flex flex-col items-center justify-center min-h-[80vh]">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="flex items-center gap-2 px-4 py-2 rounded-full bg-purple-100 border border-purple-200 text-purple-700 text-sm font-medium mb-8"
-          >
-            <Sparkles className="w-4 h-4" />
-            <span>FDE Hackathon 2026 - Team Cali</span>
-          </motion.div>
-
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-5xl md:text-7xl font-extrabold text-slate-900 text-center leading-tight mb-6"
+            transition={{ duration: 0.6 }}
+            className="text-4xl md:text-6xl lg:text-7xl font-extrabold text-slate-900 text-center leading-tight mb-8"
           >
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#6B46C1] to-[#14B8A6]">
-              FDE Pulse
-            </span>
+            How might we turn weekly updates into weekly insights?
           </motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-xl md:text-2xl text-slate-700 text-center max-w-2xl mb-12"
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="text-3xl md:text-4xl font-bold text-center mb-12"
           >
-            How might we turn weekly updates into weekly insights?
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#6B46C1] to-[#14B8A6]">
+              FDE Pulse
+            </span>
           </motion.p>
 
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
             className="flex flex-wrap justify-center gap-3"
           >
             {teamMembers.map((member, index) => (

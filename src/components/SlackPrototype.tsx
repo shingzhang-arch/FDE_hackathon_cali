@@ -44,7 +44,7 @@ export default function SlackPrototype({ children, channelName = '#fde-weekly-cu
       </div>
 
       {/* Slack UI Container */}
-      <div className="flex min-h-[750px] h-[800px] bg-slate-50">
+      <div className="flex min-h-[750px] h-[800px] bg-white">
         {/* Sidebar */}
         <div className="w-64 bg-gradient-to-b from-[#4A154B] to-[#350D36] flex flex-col">
           {/* Sidebar Header */}
@@ -111,7 +111,7 @@ export default function SlackPrototype({ children, channelName = '#fde-weekly-cu
           {/* Messages + Input */}
           <div className="flex-1 flex flex-col min-h-0 relative">
             {/* Messages Area */}
-            <div className="flex-1 overflow-y-auto p-4 bg-[#F8F8F8]">
+            <div className="flex-1 overflow-y-auto p-4 bg-white">
               {children}
             </div>
 

@@ -21,7 +21,7 @@ const painPoints = [
   {
     icon: EyeOff,
     title: 'Leadership Blindspot',
-    description: "No visibility into emerging patterns or what's actually blocking teams",
+    description: "Limited visibility into emerging patterns or what's actually blocking teams",
   },
 ];
 
@@ -71,9 +71,27 @@ export default function ProblemSection() {
           <li>Customer executive updates</li>
         </ul>
 
-        <p className="text-lg text-slate-600 mb-12 max-w-4xl leading-relaxed">
+        <p className="text-lg text-slate-600 mb-8 max-w-4xl leading-relaxed">
           But it&apos;s a <strong className="text-slate-900">one-way dead end</strong>. Once submitted, the update disappears into a Slack channel, never to be seen again. They get nothing back in return.
         </p>
+
+        {/* Current workflow form and example update */}
+        <div className="grid md:grid-cols-2 gap-8 mb-12">
+          <div className="relative">
+            <ImagePlaceholder
+              src="/images/Weekly%20Customer%20Update.png"
+              alt="Weekly Customer Update form"
+              caption="Current workflow form"
+            />
+          </div>
+          <div className="relative">
+            <ImagePlaceholder
+              src="/images/example%20weekly%20update.png"
+              alt="FDE Weekly Customer Update example"
+              caption="Example weekly update"
+            />
+          </div>
+        </div>
 
         {/* Pain point cards */}
         <div className="grid md:grid-cols-2 gap-6 mb-12">
@@ -97,24 +115,6 @@ export default function ProblemSection() {
               </div>
             </motion.div>
           ))}
-        </div>
-
-        {/* Image placeholders */}
-        <div className="grid md:grid-cols-2 gap-8">
-          <div className="relative">
-            <ImagePlaceholder
-              src="/images/current-form.png"
-              alt="Current workflow form"
-              caption="The current one-way form"
-            />
-          </div>
-          <div className="relative">
-            <ImagePlaceholder
-              src="/images/example-update.png"
-              alt="Example weekly update"
-              caption="Updates disappear into a Slack void"
-            />
-          </div>
         </div>
       </motion.div>
     </section>
