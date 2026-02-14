@@ -199,7 +199,6 @@ export default function Scenario3LeadershipInsights() {
     <div>
       <SlackPrototype
         key={restartKey}
-        channelName="#fde-leadership"
         showCanvasPanel={true}
         canvasContent={canvasContentLeadership}
         canvasTitle="Leadership Insights - Feb 10, 2025"
