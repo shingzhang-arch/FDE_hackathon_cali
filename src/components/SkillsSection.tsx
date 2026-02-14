@@ -69,6 +69,13 @@ export default function SkillsSection() {
           <h2 className="text-4xl md:text-5xl font-bold text-slate-900">Slackbot Skills</h2>
         </div>
 
+        {/* Tech Debt Callout */}
+        <div className="p-8 md:p-10 rounded-2xl bg-gradient-to-r from-[#6B46C1]/10 to-[#14B8A6]/10 border-2 border-[#6B46C1]/30 mb-12">
+          <p className="text-2xl md:text-3xl font-bold text-slate-900 text-center leading-tight max-w-4xl mx-auto">
+            We&apos;re not creating tech debt, we are using the tools that we have today.
+          </p>
+        </div>
+
         {/* Concept Explanation */}
         <div className="p-6 rounded-xl bg-slate-50 border-2 border-slate-200 mb-12">
           <p className="text-lg text-slate-700 mb-4 leading-relaxed">

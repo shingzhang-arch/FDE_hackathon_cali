@@ -6,7 +6,7 @@ const painPoints = [
   {
     icon: Brain,
     title: 'Knowledge Loss',
-    description: "When Team Alpha solves a Voice integration blocker, Team Beta has no idea 3 weeks later when they hit the same issue",
+    description: "When the Shark Ninja Team solves a Voice integration blocker, the Saks 5th Ave Team has no idea 3 weeks later when they hit the same issue",
   },
   {
     icon: FileX,
@@ -25,11 +25,11 @@ const painPoints = [
   },
 ];
 
-function ImagePlaceholder({ src, alt, caption }: { src: string; alt: string; caption: string }) {
+function ImagePlaceholder({ src, alt, caption, slackBg }: { src: string; alt: string; caption: string; slackBg?: boolean }) {
   const [hasError, setHasError] = useState(false);
   return (
     <div className="space-y-2">
-      <div className="rounded-xl border-2 border-slate-200 bg-slate-100 overflow-hidden aspect-video flex items-center justify-center relative">
+      <div className={`rounded-xl border-2 overflow-hidden aspect-video flex items-center justify-center relative ${slackBg ? 'bg-[#4A154B] border-[#5D2D5E]' : 'bg-slate-100 border-slate-200'}`}>
         {!hasError ? (
           <img src={src} alt={alt} className="w-full h-full object-contain" onError={() => setHasError(true)} />
         ) : (
@@ -82,6 +82,7 @@ export default function ProblemSection() {
               src="/images/Weekly%20Customer%20Update.png"
               alt="Weekly Customer Update form"
               caption="Current workflow form"
+              slackBg
             />
           </div>
           <div className="relative">
@@ -89,6 +90,7 @@ export default function ProblemSection() {
               src="/images/example%20weekly%20update.png"
               alt="FDE Weekly Customer Update example"
               caption="Example weekly update"
+              slackBg
             />
           </div>
         </div>

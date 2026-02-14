@@ -11,13 +11,13 @@ import './index.css';
 
 const sections = [
   { id: 'hero', title: 'FDE Pulse' },
-  { id: 'problem', title: 'The Problem' },
-  { id: 'solution', title: 'The Solution' },
-  { id: 'prototype', title: 'Prototype' },
-  { id: 'skills', title: 'Skills' },
-  { id: 'platform-future', title: 'Future of Skills' },
-  { id: 'business-value', title: 'Business Value' },
-  { id: 'why-we-win', title: 'Why We Win' },
+  { id: 'problem', title: 'The Weekly Ritual That Goes Nowhere' },
+  { id: 'solution', title: 'What If We Made It Two-Way?' },
+  { id: 'prototype', title: 'See It In Action' },
+  { id: 'skills', title: 'Slackbot Skills' },
+  { id: 'platform-future', title: 'The Future of Skills' },
+  { id: 'business-value', title: 'The Impact' },
+  { id: 'why-we-win', title: 'Why FDE Pulse is the Best Solution' },
 ];
 
 function App() {

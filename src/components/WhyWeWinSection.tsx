@@ -15,7 +15,7 @@ const reasons = [
   {
     icon: Zap,
     title: 'Production-Ready Now',
-    description: 'Built on AgentForce and Slack—both already deployed in the FDE organization. We can ship this in Q1.',
+    description: 'Built on Slackbot and Slack Skills via Canvas—both are already available. We can ship this in Q1 just through refinement of the Skill (aka prompt template in Canvas).',
   },
   {
     icon: TrendingUp,
